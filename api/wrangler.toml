@@ -1,0 +1,8 @@
+name = "pinlock-api"
+main = "src/index.js"
+compatibility_date = "2026-05-01"
+workers_dev = false
+
+# The app pins the CA roots Cloudflare issues edge certificates from, so this
+# host must stay behind Cloudflare for the pins to keep matching.
+routes = [{ pattern = "pinlock.clickswave.org", custom_domain = true }]

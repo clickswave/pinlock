@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Layer one of two. Android checks these pins itself, before the app sees a
+  byte. Layer two is OkHttp's CertificatePinner in Pins.kt.
+
+  User-installed CAs are trusted on purpose. Most apps do not, and that alone
+  stops a proxy on Android 7 and later. Trusting them here means a proxy CA
+  installed on the phone gets past the trust store and is then refused by the
+  pin, so the pin is visibly the thing doing the refusing.
+
+  The pins are the SubjectPublicKeyInfo hashes of the roots Cloudflare issues
+  edge certificates from: Google Trust Services, Let's Encrypt and SSL.com.
+  Keep this list identical to Pins.kt.
+-->
+<network-security-config>
+    <base-config cleartextTrafficPermitted="false" />
+    <domain-config cleartextTrafficPermitted="false">
+        <domain includeSubdomains="true">clickswave.org</domain>
+        <trust-anchors>
+            <certificates src="system" />
+            <certificates src="user" />
+        </trust-anchors>
+        <pin-set expiration="2035-06-01">
+            <!-- GTS Root R1 -->
+            <pin digest="SHA-256">hxqRlPTu1bMS/0DITB1SSu0vd4u/8l8TjPgfaAp63Gc=</pin>
+            <!-- GTS Root R4 -->
+            <pin digest="SHA-256">mEflZT5enoR1FuXLgYYGqnVEoZvmf9c2bVBpiOjYQ0c=</pin>
+            <!-- ISRG Root X1 -->
+            <pin digest="SHA-256">C5+lpZ7tcVwmwQIMcRtPbsQtWLABXhQzejna0wHFr8M=</pin>
+            <!-- ISRG Root X2 -->
+            <pin digest="SHA-256">diGVwiVYbubAI3RW4hB9xU8e/CH2GnkuvVFZE8zmgzI=</pin>
+            <!-- SSL.com TLS ECC Root CA 2022 -->
+            <pin digest="SHA-256">G/ANXI8TwJTdF+AFBM8IiIUPEv0Gf6H5LA/b9guG4yE=</pin>
+            <!-- SSL.com TLS RSA Root CA 2022 -->
+            <pin digest="SHA-256">K89VOmb1cJAN3TK6bf4ezAbJGC1mLcG2Dh97dnwr3VQ=</pin>
+        </pin-set>
+    </domain-config>
+</network-security-config>

@@ -1,0 +1,13 @@
+# Android
+android/local.properties
+android/keystore.properties
+android/.gradle/
+android/.kotlin/
+android/app/build/
+android/build/
+*.jks
+*.keystore
+
+# API
+api/node_modules/
+api/.wrangler/
