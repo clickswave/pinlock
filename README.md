@@ -10,6 +10,13 @@ are fake, and the API holds nothing else.
 From [Clickswave](https://clickswave.org). We use it in the Crossfyre mobile
 videos.
 
+## Install
+
+Download the APK from [Releases](https://github.com/clickswave/pinlock/releases/latest)
+and install it on a phone running Android 8.0 or later. To check it is ours,
+`apksigner verify --print-certs` should show a signing certificate SHA-256 of
+`ddb6c7f981c90395fd390f4d3775ef05eb8a55306085c92b55bfc5b6c9593d09`.
+
 ## What it pins
 
 Two independent layers, the way real apps tend to do it:
